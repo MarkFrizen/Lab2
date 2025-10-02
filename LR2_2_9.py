@@ -1,11 +1,17 @@
-def recursive_sum(n):
-    if n <= 0:
+def recursive_sum(n: int) -> int:
+    if n < 0:
+        raise ValueError("n должно быть неотрицательным числом")
+    elif n == 0:
         return 0
-    elif n == 1:
-        return 1
     else:
         return n + recursive_sum(n - 1)
-
-print(recursive_sum(5))
-print(recursive_sum(10))
-print(recursive_sum(100))
+def digit_sum():
+    test_cases = [5, 10, 100, 0]
+    for n in test_cases:
+        try:
+            result = recursive_sum(n)
+            print(f"Сумма чисел от 1 до {n} = {result}")
+        except ValueError as e:
+            print(f"Ошибка для n={n}: {e}")
+        except RecursionError:
+            print(f"Ошибка для n={n}: превышена глубина рекурсии")
